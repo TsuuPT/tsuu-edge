@@ -1,10 +1,13 @@
 server:
-  port: ${PORT:12002}
+  port: ${PORT:12010}
 
 spring:
   application:
     name: tsuu-edge
   cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
     gateway:
       httpclient:
         connect-timeout: 45000

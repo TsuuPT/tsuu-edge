@@ -5,6 +5,6 @@ RUN gradle build --no-daemon
 
 FROM adoptopenjdk/openjdk15:alpine-jre
 WORKDIR /app
-COPY --from=BUILD /build/target/*.jar ./tsuu-edge.jar
+COPY --from=BUILD /home/gradle/src/build/libs/*.jar ./tsuu-edge.jar
 EXPOSE 12002
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-Dspring.profiles.active=docker", "-jar", "tsuu-edge.jar"]

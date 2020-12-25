@@ -1,0 +1,3 @@
+logging:
+  level:
+    net.sandrohc.tsuu: DEBUG

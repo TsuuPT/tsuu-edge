@@ -1,0 +1,25 @@
+server:
+  port: ${PORT:12002}
+
+spring:
+  application:
+    name: tsuu-edge
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 45000
+        response-timeout: 45s
+      discovery:
+        locator:
+          enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+
+logging:
+  level:
+    net.sandrohc.tsuu: INFO

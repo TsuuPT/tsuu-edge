@@ -3,6 +3,7 @@ package net.sandrohc.tsuu.edge;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.gateway.filter.factory.DedupeResponseHeaderGatewayFilterFactory.Strategy;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +21,9 @@ public class TsuuEdgeApplication {
 		return builder.routes()
 				.route("tsuu-api", r -> r
 						.path("/api/**")
-						.filters(f -> f.stripPrefix(1))
+						.filters(f -> f
+								.stripPrefix(1)
+								.dedupeResponseHeader("Access-Control-Allow-Credentials Access-Control-Allow-Origin", Strategy.RETAIN_UNIQUE.toString()))
 //						.filters(f -> f.filter(throttle.apply(1, 1, 10, TimeUnit.SECONDS)))
 						.uri("lb://TSUU-API"))
 				.build();

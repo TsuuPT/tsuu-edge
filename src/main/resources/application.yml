@@ -24,8 +24,8 @@ eureka:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
 
 service:
-  web:
-    uri: ${SERVICE_WEB_URI:http://localhost:3000}
+  api: ${SERVICE_API_URI:lb://TSUU-API}
+  web: ${SERVICE_WEB_URI:http://localhost:3000}
 
 logging:
   level:

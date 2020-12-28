@@ -13,7 +13,10 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class TsuuEdgeApplication {
 
-	@Value("${service.web.uri}")
+	@Value("${service.api}")
+	private String serviceApiUri;
+
+	@Value("${service.web}")
 	private String serviceWebUri;
 
 
@@ -30,7 +33,7 @@ public class TsuuEdgeApplication {
 								.stripPrefix(1)
 								.dedupeResponseHeader("Access-Control-Allow-Credentials Access-Control-Allow-Origin", Strategy.RETAIN_UNIQUE.toString()))
 //						.filters(f -> f.filter(throttle.apply(1, 1, 10, TimeUnit.SECONDS)))
-						.uri("lb://TSUU-API"))
+						.uri(serviceApiUri))
 				.route("tsuu-web", r -> r
 						.path("/**")
 						.filters(f -> f

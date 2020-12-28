@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Edge image
+    name: Build Image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
